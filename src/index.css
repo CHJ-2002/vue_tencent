@@ -12,3 +12,85 @@ li {
 a {
   text-decoration: none;
 }
+
+.ten_tagline {
+  left: -24px;
+  font-family: 'TencentSansw7';
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 24px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  border-top: 1px solid #0052D9;
+  padding: 0px 30px;
+  color: #0052D9;
+}
+
+.ten_tagline:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: calc(100% - 12px);
+  bottom: 0px;
+  width: 100%;
+  border-top: 1px solid #0052D9;
+  transform: rotate(-69deg) translate(-1px, 0px);
+  transform-origin: 0px 0px;
+}
+
+.ten_tagline:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: calc(100% - 12px);
+  border-top: 1px solid #0052D9;
+}
+
+.ten_tagline--fine {
+  left: -24px;
+  font-family: 'TencentSansw7';
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 24px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  border-top: 1px solid #FFF;
+  padding: 0px 30px;
+  color: #FFF;
+}
+
+.ten_tagline--fine:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: calc(100% - 12px);
+  bottom: 0px;
+  width: 100%;
+  border-top: 1px solid #FFF;
+  transform: rotate(-69deg) translate(-1px, 0px);
+  transform-origin: 0px 0px;
+}
+
+.ten_tagline--fine:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: calc(100% - 12px);
+  border-top: 1px solid #FFF;
+}
+
+a {
+  cursor: pointer;
+}
+
+.el-backtop {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #0052D9;
+}
