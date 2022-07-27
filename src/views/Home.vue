@@ -303,8 +303,6 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-
-    <el-backtop></el-backtop>
   </div>
 </template>
 

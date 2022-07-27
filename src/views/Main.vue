@@ -106,7 +106,7 @@
         </div>
       </div>
     </div>
-
+    <el-backtop></el-backtop>
   </div>
 
 </template>
@@ -192,6 +192,7 @@ export default {
   .footer {
     width: 100%;
     height: 480px;
+    background: #fbfbfb;
     position: relative;
     z-index: 1;
 
