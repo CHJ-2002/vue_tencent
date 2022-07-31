@@ -23,6 +23,7 @@
     </div>
 
     <div class="mod-tab-content">
+      <div></div>
       <div class="brand-item-a brand-item">
         <div class="item-a-txt">
           <h3><i>公司简介</i></h3>
@@ -51,8 +52,49 @@
         </div>
       </div>
       <div class="brand-item-c brand-item">
-        <div class="item-c-header"></div>
-        <div class="item-c-content"></div>
+        <div class="item-c-header">
+          <h2>发展历程</h2>
+        </div>
+        <div class="item-c-content" id="nav">
+          <div class="mod-con">
+            <div class="history-main">
+              <div class="history-main-box" v-for="index in history" :key="index.id" :year=index.year>
+                <div class="history-title">{{ index.year }}</div>
+                <div class="li">
+                  <div class="left">{{ index.l_1 }}</div>
+                  <div class="right">{{ index.r_1 }}</div>
+                  <div class="both"></div>
+                </div>
+                <div class="li">
+                  <div class="left">{{ index.l_2 }}</div>
+                  <div class="right">{{ index.r_2 }}</div>
+                  <div class="both"></div>
+                </div>
+                <div class="li">
+                  <div class="left">{{ index.l_3 }}</div>
+                  <div class="right">{{ index.r_3 }}</div>
+                  <div class="both"></div>
+                </div>
+                <div class="li">
+                  <div class="left">{{ index.l_4 }}</div>
+                  <div class="right">{{ index.r_4 }}</div>
+                  <div class="both"></div>
+                </div>
+                <div class="li">
+                  <div class="left">{{ index.l_5 }}</div>
+                  <div class="right">{{ index.r_5 }}</div>
+                  <div class="both"></div>
+                </div>
+                <div class="li">
+                  <div class="left">{{ index.l_6 }}</div>
+                  <div class="right">{{ index.r_6 }}</div>
+                  <div class="both"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
       <div class="brand-item-d brand-item">
         <div class="item-d-con">
@@ -125,7 +167,7 @@
             <h2><i>管理团队</i></h2>
           </div>
           <div class="team-box">
-            <div class="li" v-for="item in team" :key="item.id">
+            <div class="li" v-for="item in team.slice(0, 15)" :key="item.id" @click="dialog(item.id)">
               <div class="mess">
                 <p class="label">{{ item.label }}</p>
                 <div class="job-mess">
@@ -140,22 +182,22 @@
               </div>
             </div>
             <h3 class="title-l">终身荣誉顾问</h3>
-            <div class="row">
-              <div class="li" v-for="item in row" :key="item.id">
-                <div class="mess">
-                  <p class="label">{{ item.label }}</p>
-                  <div class="job-mess">
-                    <p>{{ item.job1 }}</p>
-                    <p>{{ item.job2 }}</p>
-                    <p>{{ item.job3 }}</p>
-                  </div>
-                </div>
-                <div class="pic">
-                  <img :src="item.img" alt="img">
-                  <i class="block abc"></i>
+
+            <div class="li" v-for="item in team.slice(15, 18)" :key="item.id" @click="dialog(item.id)">
+              <div class=" mess">
+                <p class="label">{{ item.label }}</p>
+                <div class="job-mess">
+                  <p>{{ item.job1 }}</p>
+                  <p>{{ item.job2 }}</p>
+                  <p>{{ item.job3 }}</p>
                 </div>
               </div>
+              <div class="pic">
+                <img :src="item.img" alt="img">
+                <i class="block abc"></i>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -398,6 +440,31 @@
       </div>
     </div>
 
+    <el-dialog :visible.sync="dialogTableVisible" @close="dialogTableVisible = false">
+      <div v-for="item in team" :key="item.id" v-show="number === item.id" class="dialog">
+        <div class="pop-box">
+          <div class="team-pic">
+            <img :src=item.img alt="img">
+          </div>
+          <div class="mess-box">
+            <div class="t-box">
+              <p class="name">{{ item.label }}</p>
+              <div class="ms">
+                <p class="label">{{ item.job1 }}</p>
+                <p class="label">{{ item.job2 }}</p>
+                <p class="label">{{ item.job3 }}</p>
+              </div>
+            </div>
+            <div class="desc" style="height:200px;">
+              <p class="txt">{{ item.txt }}</p>
+              <p class="txt">{{ item.txt2 }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </el-dialog>
   </div>
 </template>
 
@@ -406,30 +473,56 @@ export default {
   name: 'Introduce',
   data () {
     return {
+      number: 0,
+      dialogTableVisible: false,
       label: '',
       searchBarFixed: false,
+      // 发展历程
+      history: [
+        { id: 1, year: 2021, l_1: '4月', r_1: '腾讯发布新蓝图，“可持续社会价值创新”成为核心战略，首期投入500亿元人民币助力发展', l_2: '1月', r_2: '腾讯宣布启动碳中和计划，成为中国首批启动碳中和规划的互联网企业之一' },
+        { id: 2, year: 2020, l_1: '12月', r_1: '企业微信服务机构数目突破500万，月活跃账户数逾1.3亿', l_2: '9月', r_2: '腾讯会议用户数突破1亿，服务覆盖达全球100多个国家与地区', l_3: '5月', r_3: '腾讯根据全球中期票据计划发行本金总额60亿美元的票据，包括首次发行的40年期票据', l_4: '3月', r_4: '微信小程序日活跃账户数超过4亿', l_5: '2-3月', r_5: '为抗击2019冠状病毒病疫情，设立15亿人民币“抗击新型冠状病毒感染肺炎疫情综合保障基金”及1亿美元“腾讯全球战疫基金”', l_6: '1月', r_6: '微信视频号上线' },
+        { id: 3, year: 2019, l_1: '12月', r_1: '腾讯云全年收入超过170亿人民币，付费客户数破百万', l_2: '11月', r_2: '发布“科技向善”新愿景', l_3: '9月', r_3: '腾讯视频付费会员数突破1亿', l_4: '5月', r_4: '合资公司获香港金融管理局颁发虚拟银行牌照', l_5: '4月', r_5: '腾讯根据全球中期票据计划发行本金总额60亿美元的票据' },
+        { id: 4, year: 2018, l_1: '12月', r_1: '腾讯移动支付年日均交易笔数超过10亿笔', l_2: '12月', r_2: '旗下腾讯音乐娱乐集团在美国纽约证券交易所上市，股票代码TME', l_3: '11月', r_3: '腾讯基金会投入10亿启动奖金创立“科学探索奖”支持基础科学和前沿技术领域的年青科学家', l_4: '9月', r_4: '企业战略升级，扎根消费互联网，拥抱产业互联网', l_5: '6月', r_5: '腾讯移动支付月活跃账户数超过8亿', l_6: '1月', r_6: '微信和WeChat全球月活跃帐户数超过10亿' },
+        { id: 5, year: 2017, l_1: '11月', r_1: '承建医疗影像国家人工智能开放创新平台', l_2: '11月', r_2: '旗下阅文集团在香港联合交易所主板上市，股票代码0772.HK', l_3: '1月', r_3: '自主研发全球创新的微信小程序正式上线' },
+        { id: 6, year: 2016, l_1: '12月', r_1: '腾讯移动支付月活跃帐户及日均交易笔数均超过6亿', l_2: '10月', r_2: '成立联营公司微民保险', l_3: '7月', r_3: '成立腾讯音乐娱乐集团', l_4: '6月', r_4: '战略投资Supercell' },
+        { id: 7, year: 2015, l_1: '10月', r_1: '成为新美大集团的战略股东', l_2: '9月', r_2: '腾讯公司慈善基金会联合全球知名机构发起全球首个互联网公益日，99公益日为期三天，在腾讯公益平台上共筹得善款近1.3亿元人民币', l_3: '9月', r_3: '成立腾讯影业和企鹅影业', l_4: '3月', r_4: '成立阅文集团', l_5: '2月', r_5: '除夕当日微信红包收发总量达到10.1亿次' },
+        { id: 8, year: 2014, l_1: '12月', r_1: '成立联营公司微众银行', l_2: '4月', r_2: 'QQ最高同时在线帐户数超过2亿', l_3: '3月', r_3: '腾讯控股获穆迪上调评级至A3', l_4: '3月', r_4: '战略投资京东集团', l_5: '1月', r_5: '推出微信红包、理财通，且除夕当日微信红包收发总量近2000万' },
+        { id: 9, year: 2013, l_1: '12月', r_1: '成为全球收入最高的游戏开发商和运营商', l_2: '11月', r_2: '发布“连接一切”与“互联网+”战略', l_3: '9月', r_3: '腾讯云正式对外推出云服务', l_4: '8月', r_4: '推出微信支付，微信和QQ手机版游戏中心', l_5: '6月', r_5: '腾讯控股获标准普尔上调评级至A-' },
+        { id: 10, year: 2012, l_1: '3月', r_1: '微信用户数超过1亿' },
+        { id: 11, year: 2011, l_1: '11月', r_1: '腾讯控股获标准普尔BBB+评级和穆迪Baa1评级', l_2: '6月', r_2: '发布公司级开放平台战略', l_3: '3月', r_3: '推出腾讯视频v.qq.com', l_4: '2月', r_4: '战略投资Riot Games', l_5: '1月', r_5: '成立腾讯产业共赢基金', l_6: '1月', r_6: '推出微信' },
+        { id: 12, year: 2010, l_1: '3月', r_1: 'QQ最高同时在线帐户数超过1亿' },
+        { id: 13, year: 2009, l_1: '6月', r_1: '成立腾讯公益慈善基金会，推动公益慈善项目', l_2: '1月', r_2: '推出国际版QQ' },
+        { id: 14, year: 2008, l_1: '6月', r_1: '腾讯控股成为香港恒生指数成份股之一' },
+        { id: 15, year: 2007, l_1: '6月', r_1: '成立腾讯公益慈善基金会，推动公益慈善项目' },
+        { id: 16, year: 2006, l_1: '6月', r_1: '腾讯网www.qq.com成为中国第一门户网站' },
+        { id: 17, year: 2005, l_1: '12月', r_1: '推出首款自研开发的大型多人同时在线游戏QQ幻想', l_2: '7月', r_2: '推出在线音乐平台QQ音乐', l_3: '5月', r_3: '推出社交网络平台QQ空间', l_4: '3月', r_4: '收购中国领先的电邮客户端软件开发商Foxmail' },
+        { id: 18, year: 2004, l_1: '12月', r_1: '测试首款自研开发的中型休闲游戏QQ堂', l_2: '8月', r_2: 'QQ游戏成为中国最大的休闲游戏平台，最高同时在线账户数超越100万', l_3: '6月', r_3: '腾讯控股在香港联合交易所主板上市，股票代码0700.HK' },
+        { id: 19, year: 2003, l_1: '11月', r_1: '推出综合门户网站腾讯网www.qq.com', l_2: '9月', r_2: '推出首款企业实时通信产品腾讯通(“RTX”)', l_3: '8月', r_3: '推出休闲游戏平台“QQ游戏”', l_4: '5月', r_4: '推出QQ邮箱', l_5: '1月', r_5: '推出在线装扮产品QQ秀' },
+        { id: 20, year: 2001, l_1: '6月', r_1: '获得MIH投资', l_2: '6月', r_2: '推出互联网增值服务（IVAS）', l_3: '2月', r_3: 'QQ最高同时在线用户账户数超越100万' },
+        { id: 21, year: 2000, l_1: '11月', r_1: '推出提供聊天优惠功能的包月服务QQ会员', l_2: '8月', r_2: '推出移动增值服务（MVAS）', l_3: '6月', r_3: '推出手机QQ' },
+        { id: 22, year: 1999, l_1: '4月', r_1: '推出移动电邮', l_2: '2月', r_2: 'QQ诞生' },
+        { id: 23, year: 1998, l_1: '11月', r_1: '腾讯在深圳成立' },
+      ],
       // 管理团队
       team: [
-        { id: 1, label: '马化腾', job1: '主要创办人', job2: '董事会主席兼首席执行官', job3: '', img: require('../assets/Introduce/1.jpg') },
-        { id: 2, label: '刘炽平', job1: '董事会执行董事兼公司总裁', job2: '', job3: '', img: require('../assets/Introduce/2.jpg') },
-        { id: 3, label: '许晨晔', job1: '主要创办人', job2: '首席信息官', job3: '', img: require('../assets/Introduce/3.jpg') },
-        { id: 4, label: '任宇昕', job1: '首席运营官', job2: '互动娱乐事业群总裁', job3: '平台与内容事业群总裁', img: require('../assets/Introduce/4.jpg') },
-        { id: 5, label: '张小龙', job1: '集团高级执行副总裁', job2: '微信事业群总裁', job3: '', img: require('../assets/Introduce/5.jpg') },
-        { id: 6, label: 'James Mitchell', job1: '首席战略官', job2: '集团高级执行副总裁', job3: '', img: require('../assets/Introduce/6.jpg') },
-        { id: 7, label: '汤道生', job1: '集团高级执行副总裁', job2: '云与智慧产业事业群总裁', job3: '', img: require('../assets/Introduce/7.jpg') },
-        { id: 8, label: '卢山', job1: '集团高级执行副总裁', job2: '技术工程事业群总裁', job3: '', img: require('../assets/Introduce/8.jpg') },
-        { id: 9, label: '网大为', job1: '首席探索官', job2: '集团高级执行副总裁', job3: '', img: require('../assets/Introduce/10.jpg') },
-        { id: 10, label: '马晓轶', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/11.jpg') },
-        { id: 11, label: '林璟骅', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/19.jpg') },
-        { id: 12, label: '罗硕瀚', job1: '首席财务官', job2: '集团高级副总裁', job3: '', img: require('../assets/Introduce/12.jpg') },
-        { id: 13, label: '郭凯天', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/13.jpg') },
-        { id: 14, label: '奚丹', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/14.jpg') },
-        { id: 15, label: '杨国安', job1: '高级管理顾问', job2: '', job3: '', img: require('../assets/Introduce/15.jpg') },
-      ],
-      row: [
-        { id: 1, label: '张志东', job1: '主要创办人', job2: '终身荣誉顾问', job3: '腾讯学堂荣誉院长', img: require('../assets/Introduce/16.jpg') },
-        { id: 2, label: '陈一丹', job1: '主要创办人', job2: '终身荣誉顾问', job3: '腾讯公益慈善基金会发起人兼荣誉理事长', img: require('../assets/Introduce/17.jpg') },
-        { id: 3, label: '曾李青', job1: '主要创办人', job2: '终身荣誉顾问', job3: '', img: require('../assets/Introduce/18.jpg') },
+        { id: 1, label: '马化腾', job1: '主要创办人', job2: '董事会主席兼首席执行官', job3: '', img: require('../assets/Introduce/1.jpg'), txt: '腾讯主要创办人之一，董事会主席兼首席执行官，全面负责公司战略规划、定位和管理。在1998年创立腾讯前，马化腾曾在深圳润迅通讯发展有限公司工作，主管互联网传呼系统的研究开发。', txt2: '马化腾毕业于深圳大学计算机及应用专业，获理学士学位。' },
+        { id: 2, label: '刘炽平', job1: '董事会执行董事兼公司总裁', job2: '', job3: '', img: require('../assets/Introduce/2.jpg'), txt: '2005年加入腾讯，出任本公司首席战略投资官，负责公司战略、投资、并购和投资者关系方面的工作；于2006年升任总裁，负责管理公司日常营运。 2007年，被任命为董事会执行董事。', txt2: '加入腾讯之前，刘炽平为高盛亚洲投资银行部的执行董事及电信、媒体与科技界的首席运营官，并曾在麦肯锡公司工作。他拥有密歇根大学电子工程学士学位，史丹福大学电子工程理硕士学位以及西北大学凯洛格管理学院研究生院工商管理硕士学位。' },
+        { id: 3, label: '许晨晔', job1: '主要创办人', job2: '首席信息官', job3: '', img: require('../assets/Introduce/3.jpg'), txt: '全面负责公司网站及社区，及客户关系的策略规划与发展工作。加入腾讯之前，许晨晔任职于深圳数据通信局，积累了丰富的软件系统设计、网络管理、市场推广及销售等方面的管理经验。', txt2: '许晨晔毕业于深圳大学计算机及应用专业，并拥有南京大学计算机应用硕士学位' },
+        { id: 4, label: '任宇昕', job1: '首席运营官', job2: '互动娱乐事业群总裁', job3: '平台与内容事业群总裁', img: require('../assets/Introduce/4.jpg'), txt: '2012年5月起出任腾讯首席运营官，至今全面负责互动娱乐事业群以及平台与内容事业群的管理和发展。任宇昕于2000年加入腾讯，自2005年9月起，全面负责互动娱乐业务系统的游戏开发、运营、市场、渠道销售等工作， 于2018年始带领平台与内容事业群的发展。在加入腾讯之前，曾在华为技术有限公司工作', txt2: '任宇昕毕业于电子科技大学计算机科学与工程专业，并拥有中欧国际工商学院EMBA学位。' },
+        { id: 5, label: '张小龙', job1: '集团高级执行副总裁', job2: '微信事业群总裁', job3: '', img: require('../assets/Introduce/5.jpg'), txt: '全面负责微信事业群的管理工作。2005年加入腾讯，带领团队将 QQ邮箱建设成为中国最大的邮件服务商；于2011年推出微信，被誉为“微信之父”；2012年升任集团高级副总裁，负责微信、邮箱等产品及团队的管理工作。2014年5月，张小龙升任集团高级执行副总裁，全面负责微信事业群的管理工作。', txt2: '张小龙于1997年独立开发Foxmail，是中国第一代互联网软件开发者。在加入腾讯之前，曾担任博大公司的副总裁，从事企业邮箱领域工作，拥有多年的互联网产品经验。张小龙1994年毕业于华中科技大学电信系，获硕士学位。' },
+        { id: 6, label: 'James Mitchell', job1: '首席战略官', job2: '集团高级执行副总裁', job3: '', img: require('../assets/Introduce/6.jpg'), txt: '于2011年加入腾讯，全面负责公司战略规划、实施，投资并购和投资者关系管理工作。在加入本公司前，James Mitchell是高盛纽约分公司的董事总经理，主要负责通讯、传媒及娱乐等行业的研究工作，对全球互联网、娱乐和传媒等行业都有深入了解。', txt2: 'James Mitchell毕业于英国牛津大学，拥有特许金融分析师资格。' },
+        { id: 7, label: '汤道生', job1: '集团高级执行副总裁', job2: '云与智慧产业事业群总裁', job3: '', img: require('../assets/Introduce/7.jpg'), txt: '自2018年10月起带领云与智慧产业事业群，推进公司在云与产业互联网的战略规划与发展，同时联合分管广告营销服务。汤道生曾任腾讯社交网络事业群总裁，全面负责QQ通信、社交网络平台、增值服务、开放平台的发展策略。在加入腾讯之前，他在美国任职于Sendmail和甲骨文公司，从事企业软件研发与管理工作。', txt2: '汤道生曾在美国密歇根大学获得计算机工程学士学位，并于斯坦福大学获得电子工程硕士学位。' },
+        { id: 8, label: '卢山', job1: '集团高级执行副总裁', job2: '技术工程事业群总裁', job3: '', img: require('../assets/Introduce/8.jpg'), txt: '于2000年加入腾讯，历任即时通信产品部总经理、平台研发系统副总裁和运营平台系统高级副总裁；2008年3月起，负责腾讯运营平台系统的管理工作；2012年5月起，负责技术工程事业群的管理工作。卢山拥有多年互联网技术经验，在加入腾讯之前，他在深圳黎明网络系统有限公司工作。', txt2: '汤道生曾在美国密歇根大学获得计算机工程学士学位，并于斯坦福大学获得电子工程硕士学位。' },
+        { id: 9, label: '网大为', job1: '首席探索官', job2: '集团高级执行副总裁', job3: '', img: require('../assets/Introduce/10.jpg'), txt: '2001年加入腾讯，参与公司国际及新业务拓展, 同时积极推动公司参与新兴技术、业务领域、研究及理念的协作。加入本公司之前，网大为在Naspers 中国公司工作。', txt2: '网大为拥有华盛顿大学学士学位和加州大学伯克利分校硕士学位。' },
+        { id: 10, label: '马晓轶', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/11.jpg'), txt: '马晓轶于2007年加入腾讯，2013年起出任腾讯高级副总裁，全面负责腾讯在全球范围内的游戏发行业务，建立及维护与合作公司的长期伙伴关系。在加入腾讯之前，曾担任广州光通通信发展有限公司游戏事业部总经理，积累了多年网络通信和游戏行业经验。', txt2: '马晓轶毕业于上海交通大学计算机及应用专业，拥有复旦大学高层管理人员工商管理硕士学位。' },
+        { id: 11, label: '林璟骅', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/19.jpg'), txt: '于2013年加入腾讯，2020年起出任腾讯高级副总裁，负责腾讯广告及智慧零售业务的开拓和发展。同时，负责战略发展工作，推动集团战略升级和业务协同。林璟骅拥有多年的战略咨询与管理经验，在加入腾讯前，曾任麦肯锡全球合伙人及台湾分公司总经理。', txt2: '林璟骅毕业于台湾大学社会学专业，并于哈佛大学获得工商管理硕士学位。' },
+        { id: 12, label: '罗硕瀚', job1: '首席财务官', job2: '集团高级副总裁', job3: '', img: require('../assets/Introduce/12.jpg'), txt: '2004年加入腾讯，担任财务总监，并于2008年获擢升为副首席财务官。于2012年5月，罗硕瀚出任腾讯首席财务官。在加入腾讯之前，他曾在普华永道会计师事务所工作。', txt2: '罗硕瀚拥有西澳洲Curtin University商学会计学士学位及美国西北大学凯洛格管理学院和香港科技大学EMBA学位。他是澳洲会计师公会资深会员、香港会计师公会资深会员、英国特许管理会计师公会资深会员及特许公认会计师公会会员。' },
+        { id: 13, label: '郭凯天', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/13.jpg'), txt: '兼任腾讯公益慈善基金会理事长，腾讯研究院理事长。郭凯天于2002年加入腾讯，于2007年9月起全面负责集团公共策略、法律事务、信息安全、企业社会责任、行政、工程建设、采购等管理工作，期间负责组建成立腾讯公益慈善基金会和牵头创办腾讯研究院。', txt2: '郭凯天毕业于中南财经政法大学，获法学学士学位，并拥有律师资格。' },
+        { id: 14, label: '奚丹', job1: '集团高级副总裁', job2: '', job3: '', img: require('../assets/Introduce/14.jpg'), txt: '2002年加入腾讯，自2008年5月起全面负责集团人才发展与管理领域的各项管理职能。加入腾讯之前，曾于中兴通讯股份公司从事人力资源管理工作，至今在IT及互联网领域积累逾18年专业人力资源管理从业经验。', txt2: '1996年，奚丹毕业于深圳大学计算机应用专业，并于2005年獲得清华大学MBA学位。' },
+        { id: 15, label: '杨国安', job1: '高级管理顾问', job2: '', job3: '', img: require('../assets/Introduce/15.jpg'), txt: '2008年加入腾讯，协助公司人力资源体系建设、高管领导力提升、组织创新变革、和战略伙伴的组织能力打造。加入腾讯之前，他先后任教于美国密歇根大学商学院和中欧国际工商学院，管理著作超过十本。1998-2002年，出任宏碁集团首席人力资源官，推动宏碁组织变革。杨国安拥有香港大学社会科学学士和硕士学位，以及美国密歇根商学院博士学位。杨国安兼任腾讯旗下青腾教务长， 参与培育逾300名CEO。', txt2: '' },
+        { id: 16, label: '张志东', job1: '主要创办人', job2: '终身荣誉顾问', job3: '腾讯学堂荣誉院长', img: require('../assets/Introduce/16.jpg'), txt: '腾讯主要创办人之一，2014年9月起任腾讯终身荣誉顾问，兼腾讯学堂荣誉院长。张志东于1998年11月参与创立腾讯，出任腾讯首席技术官，负责公司专有技术的研发工作，并组建了业内领先的技术团队。张志东于1993年获得深圳大学计算机本科学位，并于1996年获得华南理工大学计算机应用及系统架构硕士学位。' },
+        { id: 17, label: '陈一丹', job1: '主要创办人', job2: '终身荣誉顾问', job3: '腾讯公益慈善基金会发起人兼荣誉理事长', img: require('../assets/Introduce/17.jpg'), txt: '腾讯主要创办人之一，腾讯公益慈善基金会发起人兼荣誉理事长。2013年3月起任腾讯终身荣誉顾问。陈一丹于1998年参与创立腾讯，出任腾讯首席行政官，全面负责集团行政、法律、人力资源和公益慈善基金事宜。此外，陈一丹亦负责腾讯的管理机制、知识产权、政府关系。加入腾讯之前，陈一丹曾在深圳出入境检验检疫局工作数年。陈一丹于1993年获得深圳大学应用化学理学士学位、1996年获得南京大学经济法硕士学位，并于2019年获得新加坡管理大学工商管理博士学位。' },
+        { id: 18, label: '曾李青', job1: '主要创办人', job2: '终身荣誉顾问', job3: '', img: require('../assets/Introduce/18.jpg'), txt: '腾讯主要创办人之一，2007年6月起任腾讯终身荣誉顾问。曾李青于1999年至2007年期间出任腾讯首席运营官，负责公司业务范围及产品种类管理，同时管理全国各市场推广工作。加入腾讯之前，曾李青在深圳市数据通信局工作，熟悉中国互联网及电信行业。' },
       ],
       // 办公地点
       office: '',
@@ -442,6 +535,7 @@ export default {
     this.tab_li1()
     // 监听滚动事件
     window.addEventListener('scroll', this.onScroll, false)
+    this.scrollInit();
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.handleScroll)
@@ -449,6 +543,10 @@ export default {
     window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
+    dialog (index) {
+      this.dialogTableVisible = true
+      this.number = index
+    },
     // 业务架构的点击事件
     add () {
       for (var i = 0; i < 6; i++) {
@@ -552,7 +650,7 @@ export default {
     scrollTo (index) {
       // 获取目标的 offsetTop
       // css选择器是从 1 开始计数，我们是从 0 开始，所以要 +1
-      const targetOffsetTop = document.querySelector(`.mod-tab-content .brand-item:nth-child(${index + 1})`).offsetTop
+      const targetOffsetTop = document.querySelector(`.mod-tab-content .brand-item:nth-child(${index + 2})`).offsetTop
       // 获取当前 offsetTop
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       // 定义一次跳 50 个像素，数字越大跳得越快，但是会有掉帧得感觉，步子迈大了会扯到蛋
@@ -595,12 +693,46 @@ export default {
           requestAnimationFrame(smoothUp)
         }
       }
+    },
+    // 发展历程的左右拖动
+    scrollInit () {
+      // 获取要绑定事件的元素
+      const nav = document.getElementById("nav")
+      var flag; // 鼠标按下
+      var downX; // 鼠标点击的x下标
+      var scrollLeft; // 当前元素滚动条的偏移量
+      nav.addEventListener("mousedown", function (event) {
+        flag = true;
+        downX = event.clientX; // 获取到点击的x下标
+        scrollLeft = this.scrollLeft; // 获取当前元素滚动条的偏移量
+      });
+      nav.addEventListener("mousemove", function (event) {
+        if (flag) { // 判断是否是鼠标按下滚动元素区域
+          var moveX = event.clientX; // 获取移动的x轴
+          var scrollX = moveX - downX; // 当前移动的x轴下标减去刚点击下去的x轴下标得到鼠标滑动距离
+          this.scrollLeft = scrollLeft - scrollX // 鼠标按下的滚动条偏移量减去当前鼠标的滑动距离
+          console.log(scrollX)
+        }
+      });
+      // 鼠标抬起停止拖动
+      nav.addEventListener("mouseup", function () {
+        flag = false;
+      });
+      // 鼠标离开元素停止拖动
+      nav.addEventListener("mouseleave", function (event) {
+        flag = false;
+      });
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+#nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .Introduce {
   .mod-section {
     width: 100%;
@@ -623,7 +755,7 @@ export default {
         text-align: center;
         font-size: 30px;
         color: #2a2e2e;
-        font-family: 'TencentSansw7';
+        font-family: 'KaiTi';
         margin-bottom: 52px;
       }
 
@@ -635,6 +767,7 @@ export default {
         line-height: 36px;
         font-weight: 400;
         margin: 16px auto;
+        font-family: 'KaiTi';
       }
 
       h4 p {
@@ -663,7 +796,7 @@ export default {
             font-size: 30px;
             color: #2A2E2E;
             letter-spacing: 0;
-            font-family: 'TencentSansw7';
+            font-family: 'KaiTi';
             font-weight: 700;
           }
         }
@@ -721,13 +854,69 @@ export default {
         background-image: url(../assets/Introduce/banner.jpg);
         background-position: center;
         color: #fff;
+
+        h2 {
+          text-align: center;
+          font-size: 50px;
+          line-height: 45px;
+          padding-top: 150px;
+          font-family: 'KaiTi';
+        }
       }
 
       .item-c-content {
-        height: 501px;
+        height: 511px;
         background: #FBFBFB;
         color: #5F6464;
         overflow: hidden;
+
+        .mod-con {
+          width: 1200px;
+          margin: 0 auto;
+          position: relative;
+
+          .history-main {
+            width: 10000px;
+            position: absolute;
+            left: 0;
+
+            .history-main-box {
+              width: 384px;
+              float: left;
+              margin-right: 25px;
+
+              .history-title {
+                font-size: 24px;
+                padding-top: 40px;
+                line-height: 36px;
+                font-family: 'KaiTi';
+                padding-bottom: 8px;
+                border-bottom: 1px solid #D8D9DC;
+                margin-bottom: 18px;
+                color: #2A2E2E;
+              }
+
+              .li {
+                height: 50px;
+                // line-height: 40px;
+                margin-bottom: 18px;
+                font-size: 14px;
+
+                .left {
+                  float: left;
+                  width: 50px;
+                  padding-right: 10px;
+                  text-align: right;
+                }
+
+                .right {
+                  width: 320px;
+                  float: left;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
@@ -851,7 +1040,7 @@ export default {
               line-height: 25px;
               text-align: left;
               position: absolute;
-              top: 177px;
+              top: 172px;
               background: #fff;
             }
           }
@@ -1146,6 +1335,58 @@ export default {
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  .dialog {
+    width: 632px;
+    height: 415;
+
+    .pop-box {
+      display: flex;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .mess-box {
+      position: relative;
+      margin-left: 40px;
+      margin-right: 30px;
+
+      .t-box {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #E9ECF0;
+
+        .name {
+          font-size: 30px;
+          color: #0052D9;
+          letter-spacing: 0;
+          margin-bottom: 8px;
+          margin-top: 20px;
+          font-family: 'KaiTi';
+          font-weight: bold;
+        }
+
+        .label {
+          font-size: 16px;
+          color: #414444;
+          letter-spacing: 0;
+          line-height: 25px;
+          margin-bottom: 4px;
+          font-family: 'KaiTi';
+          font-weight: bold;
+        }
+      }
+
+      .desc {
+        .txt {
+          margin-top: 10px;
         }
       }
     }

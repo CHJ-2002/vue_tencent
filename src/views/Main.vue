@@ -2,27 +2,27 @@
   <div class="container">
     <div class="header">
       <div class="header-con">
-        <router-link href="#" class="logo" to="/Home">
+        <router-link href="#" class="logo" to="/home">
           <h1>Tentent腾讯</h1>
         </router-link>
         <ul class="menu_list">
           <li class="menu_item">
-            <router-link class="txt" to="/Introduce">简介</router-link>
+            <router-link class="txt" to="/introduce">简介</router-link>
           </li>
           <li class="menu_item">
-            <router-link class="txt" to="/Business">业务</router-link>
+            <router-link class="txt" to="/business">业务</router-link>
           </li>
           <li class="menu_item">
-            <router-link class="txt" to="/Staff">员工</router-link>
+            <router-link class="txt" to="/staff">员工</router-link>
           </li>
           <li class="menu_item">
-            <router-link class="txt" to="/ESG">ESG</router-link>
+            <router-link class="txt" to="/esg">ESG</router-link>
           </li>
           <li class="menu_item">
-            <router-link class="txt" to="/Investor">投资者</router-link>
+            <router-link class="txt" to="/investor">投资者</router-link>
           </li>
           <li class="menu_item">
-            <router-link class="txt" to="/Media">媒体</router-link>
+            <router-link class="txt" to="/media">媒体</router-link>
           </li>
         </ul>
       </div>
@@ -106,6 +106,7 @@
         </div>
       </div>
     </div>
+
     <el-backtop></el-backtop>
   </div>
 

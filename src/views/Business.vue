@@ -390,6 +390,7 @@ export default {
 
 <style lang="less" scoped>
 .Business {
+
   .mod-section {
     background: url(../assets/Business/business-1.jpg) no-repeat center bottom;
     background-size: cover;
@@ -447,6 +448,7 @@ export default {
                 margin: 0 auto;
 
                 h3 {
+                  font-family: 'KaiTi';
                   font-size: 24px;
                   line-height: 36px;
                   margin-bottom: 24px;

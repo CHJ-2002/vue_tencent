@@ -41,7 +41,7 @@
               <h3>{{ index.name }}</h3>
               <h4></h4>
               <a>
-                <p class="desc">{{ index.desc }}}</p>
+                <p class="desc">{{ index.desc }}</p>
               </a>
               <a class="go-icon">
                 <img src="../assets/ESG/go-icon.png" alt="img"></a>
@@ -169,7 +169,7 @@ export default {
       const targetOffsetTop = document.querySelector(`.mod-tab-content .brand-item:nth-child(${index + 2})`).offsetTop
       // 获取当前 offsetTop
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      // 定义一次跳 50 个像素，数字越大跳得越快，但是会有掉帧得感觉，步子迈大了会扯到蛋
+      // 定义一次跳 50 个像素，数字越大跳得越快，但是会有掉帧得感觉
       const STEP = 50
       // 判断是往下滑还是往上滑
       if (scrollTop > targetOffsetTop) {
@@ -366,7 +366,6 @@ export default {
             font-size: 30px;
             color: #2a2e2e;
             font-family: 'KaiTi';
-            font-style: italic;
           }
 
           .desc-box {
@@ -383,62 +382,6 @@ export default {
 
           .ten_accordion_body {
             padding: 0px 0px 24px 0px;
-
-            .ten_esg {
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              margin: 24px 0px;
-
-              .ten_esg_icon {
-                display: block;
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                margin-right: 24px;
-                background: #194AC3;
-                background-size: 18px;
-                background-repeat: no-repeat;
-                background-position: center center;
-              }
-
-              .ten_esg_name {
-                font-size: 18px;
-                color: #0a0302;
-
-                span {
-                  font-size: 12px;
-                  color: #5f6464;
-                  display: block;
-                }
-              }
-
-              .ten_esg_bar {
-                text-align: left;
-                justify-self: flex-end;
-                width: 25%;
-                position: relative;
-                padding: 0px 0px 20px 0px;
-                max-width: 300px;
-                margin-right: 25%;
-                margin-left: auto;
-                color: #194AC3;
-                font-size: 18px;
-              }
-            }
-
-            .ten_esg:nth-child(1),
-            .ten_esg:nth-child(3) {
-              .ten_esg_icon {
-                background-image: url(../assets/ESG/stats.png);
-              }
-            }
-
-            .ten_esg:nth-child(2) {
-              .ten_esg_icon {
-                background-image: url(../assets/ESG/clipboard.png);
-              }
-            }
           }
         }
       }
@@ -454,7 +397,6 @@ export default {
             font-size: 30px;
             color: #2a2e2e;
             font-family: 'KaiTi';
-            font-style: italic;
           }
 
           .desc-box {

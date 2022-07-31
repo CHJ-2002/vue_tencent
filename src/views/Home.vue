@@ -605,7 +605,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        font-family: 'TencentSansw3';
+        font-family: 'KaiTi';
 
         .ten_home_l {
           width: calc(33.33% - 12px);
@@ -619,7 +619,7 @@ export default {
             font-weight: normal;
 
             h2 {
-              font-family: 'TencentSansw7';
+              font-family: 'KaiTi';
               font-size: 32px;
               line-height: 1.2em;
               margin: 12px 0px;

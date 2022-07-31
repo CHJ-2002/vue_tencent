@@ -279,7 +279,7 @@ export default {
             }
 
             h4 {
-              font-family: initial;
+              font-family: 'KaiTi';
               font-size: 20px;
               line-height: 36px;
               margin-bottom: 8px;
@@ -529,7 +529,6 @@ export default {
                 line-height: 36px;
                 color: #0052d9;
                 margin-top: 16px;
-
 
                 p {
                   float: left;

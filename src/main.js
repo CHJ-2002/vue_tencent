@@ -7,7 +7,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './index.less'
 
 Vue.config.productionTip = false
+
 Vue.use(ElementUI)
+
 new Vue({
   router,
   store,
