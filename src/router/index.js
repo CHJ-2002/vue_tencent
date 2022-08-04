@@ -1,16 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '../views/Main.vue'
-import Home from '../views/Home.vue'
-import Introduce from '../views/Introduce.vue'
-import Business from '../views/Business.vue'
-import Staff from '../views/Staff.vue'
-import ESG from '../views/ESG.vue'
-import Investor from '../views/Investor.vue'
-import Media from '../views/Media.vue'
-import Videos from '../components/Media/Videos.vue'
-import Images from '../components/Media/Images.vue'
-import Activities from '../components/Media/Activities.vue'
+// import Main from '../views/Main.vue'
+// import Home from '../views/Home.vue'
+// import Introduce from '../views/Introduce.vue'
+// import Business from '../views/Business.vue'
+// import Staff from '../views/Staff.vue'
+// import ESG from '../views/ESG.vue'
+// import Investor from '../views/Investor.vue'
+// import Media from '../views/Media.vue'
+// import Videos from '../components/Media/Videos.vue'
+// import Images from '../components/Media/Images.vue'
+// import Activities from '../components/Media/Activities.vue'
+const Main = () => import('@/views/Main.vue')
+const Home = () => import('@/views/Home.vue')
+const Introduce = () => import('@/views/Introduce.vue')
+const Business = () => import('@/views/Business.vue')
+const Staff = () => import('@/views/Staff.vue')
+const ESG = () => import('@/views/ESG.vue')
+const Investor = () => import('@/views/Investor.vue')
+const Media = () => import('@/views/Media.vue')
+const Videos = () => import('@/components/Media/Videos.vue')
+const Images = () => import('@/components/Media/Images.vue')
+const Activities = () => import('@/components/Media/Activities.vue')
 
 Vue.use(VueRouter)
 
