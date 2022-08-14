@@ -1,11 +1,12 @@
 # vue_tencent
 
-本项目是仿腾讯官网的vue2项目，包含了首页、简介、业务、员工、ESG、投资者、媒体以及媒体中的媒体资料库的详细信息。
+   本项目是仿腾讯官网的vue2项目，包含了首页、简介、业务、员工、ESG、投资者、媒体以及媒体中的媒体资料库的详细信息。
 
-http://www.wanfeng000.co/Tencent/#/Home
+# 地址
+  http://www.wanfeng000.co/Tencent/
 
 # 技术栈
-vue2、vue-router、element-ui、less
+  vue2、vue-router、element-ui、less
 
 ## Project setup
 ```
