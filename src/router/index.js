@@ -41,12 +41,16 @@ const routes = [
       { path: '/media/activities', component: Activities, name: 'activities' },
     ]
   },
-
-
 ]
+
 
 const router = new VueRouter({
   routes
+})
+
+
+router.afterEach((to, from) => {
+  window.scrollTo(0, 0)
 })
 
 export default router
